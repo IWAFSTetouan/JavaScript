@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="TP1.js"></script>
+    <link rel="stylesheet" href="TP1.css">
+</head>
+<body onmousemove="updatePosition(event)">
+    <input type="text" id="nom">
+    <button onclick="showHello()">Click Me</button>
+    <hr>
+    <h3>Exercice1</h3>
+    <input type="text" id="a" placeholder="a">
+    +
+    <input type="text" id="b" placeholder="b">
+    <button onclick="somme()">=</button>
+    <span id="resultat"></span>
+    <h3>Exercice2</h3>
+    <input oninput="changeColor()" type="color" id="colorPicker">
+    <div id="divColor">HHHHHHHHH</div>
+    <h3>Exercice3</h3>
+    <span id="xpos">0</span>
+    <span id="ypos">0</span>
+    <img id="image" onclick="move()" src="images/static_image.png">
+</body>
+</html>
