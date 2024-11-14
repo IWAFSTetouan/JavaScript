@@ -19,8 +19,10 @@ function ajouterEtudiant(){
 
 }
 
-function deleteEtudiant(e){ 
-    ligne=e.target.parentElement.parentElement
+function deleteEtudiant(event){ 
+    ligne=event.target.parentElement.parentElement
+    id=ligne.children[0].innerHTML
+    localStorage.removeItem(id)
     ligne.remove()
 }
 
