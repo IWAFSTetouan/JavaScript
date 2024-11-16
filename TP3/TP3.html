@@ -8,14 +8,11 @@
     <script src="TP3.js"></script>
 </head>
 <body>
-    <button id="openModal">Ouvrir la modale</button>
-
-    <div id="modal" class="modal">
-        <div class="modalContent">
-            <span id="closeModal" class="close">X</span>
+    <button id="openModal" onclick="openModal()">Ouvrir la modale</button>
+    <dialog id="modal">
+            <span id="closeModal" onclick="closeModal()">X</span>
             <h2>Fenêtre modale</h2>
             <p>Contenu de la modale</p>
-        </div>
-    </div>
+</dialog>
 </body>
 </html>
