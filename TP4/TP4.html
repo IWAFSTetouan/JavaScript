@@ -10,12 +10,18 @@
     <script src="TP4.js"></script>
 </head>
 <body>
-  <button onclick="openModal()" type="button" class="btn btn-primary">Ajouter</button>
+  <button onclick="openModal(event)" type="button" class="btn btn-primary">Ajouter</button>
 
+  <dialog id="deleteModalDialog">
+    <h2>Supprimer un étudiant</h2>
+    <p>Voulez vous vraiment supprimer l'étudiant: <span id="idEtudiant"></span></p>
+    <button onclick="deleteEtudiant()" type="button" class="btn btn-danger">Supprimer</button>
+    <button onclick="closeModal('deleteModalDialog')" type="button" class="btn btn-primary">Annuler</button>
+  </dialog>
   <dialog id="modal">
         <form id="form_etudiant">
-          <button id="closeDialog" onclick="closeModal()" type="button">X</button>
-            <h2>Ajouter un étudiant</h2>
+          <button id="closeDialog" onclick="closeModal('modal')" type="button">X</button>
+            <h2><span id="actionTitle" ></span> un étudiant</h2>
             <div class="form-row">
               <div class="col">
                 <input id="id" name="id" type="text" class="form-control" placeholder="Id">
@@ -27,7 +33,7 @@
                 <input id="age" name="age" type="text" class="form-control" placeholder="Age">
               </div>
               <div class="col">
-                <button onclick="ajouterEtudiant()" type="button" class="btn btn-primary">Ajouter</button>
+                <button id="actionBTN" onclick="actionEtudiant()" type="button" class="btn btn-primary">Ajouter</button>
             </div>
           </div>
           </form>

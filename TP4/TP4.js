@@ -1,3 +1,4 @@
+ligne=""
 function ajouterEtudiant(){
     /* Première méthode
     id=document.getElementById('id').value
@@ -16,14 +17,6 @@ function ajouterEtudiant(){
     document.getElementById('form_etudiant').reset()
     //Enregistrer l'étudiant dans localStorage
     persist(etudiant)
-    document.getElementById('modal').close()
-}
-
-function deleteEtudiant(event){ 
-    ligne=event.target.parentElement.parentElement
-    id=ligne.children[0].innerHTML
-    localStorage.removeItem(id)
-    ligne.remove()
 }
 
 function persist(etudiant){
@@ -55,19 +48,70 @@ function addToTable(etudiant){
     //Créer l'image de suppression d'une ligne
     deleteImg=document.createElement("img")
     deleteImg.setAttribute("src","https://files.softicons.com/download/toolbar-icons/vista-base-software-icons-2-by-icons-land/png/256x256/DeleteRed.png")
-    deleteImg.setAttribute("onclick","deleteEtudiant(event)")
+    deleteImg.setAttribute("onclick","openDeleteModal(event)")
+    //Créer l'image de modification d'une ligne
+    updateImg=document.createElement("img")
+    updateImg.setAttribute("src","https://cdn3.iconfinder.com/data/icons/3d-printing-icon-set/512/Refresh.png")
+    updateImg.setAttribute("onclick","openUpdateModal(event)")
     //Ajouter chaque élément HTML à son élément parent
     actionCell.appendChild(deleteImg)
+    actionCell.appendChild(updateImg)
     ligne.appendChild(idCell);ligne.appendChild(nomCell);
     ligne.appendChild(ageCell);ligne.appendChild(actionCell)
     liste_etudiants.appendChild(ligne)
 }
 
-function openModal(){
+
+function openModal(e){
     document.getElementById('modal').showModal()
+    document.getElementById('actionBTN').innerHTML="Ajouter"
+    document.getElementById('actionTitle').innerHTML="Ajouter"
+    document.getElementById('form_etudiant').reset()
 }
 
-function closeModal(){
-    console.log("hhhh")
+function closeModal(nomModal){
+    document.getElementById(nomModal).close()
+}
+
+function openDeleteModal(event){
+    document.getElementById('deleteModalDialog').showModal()
+    ligne=event.target.parentElement.parentElement
+    id=ligne.children[0].innerHTML
+    document.getElementById('idEtudiant').innerHTML=id
+}
+
+function deleteEtudiant(){ 
+    id=document.getElementById('idEtudiant').innerHTML
+    localStorage.removeItem(id)
+    ligne.remove()
+    closeModal('deleteModalDialog')
+}
+
+function openUpdateModal(event){
+    document.getElementById('modal').showModal()
+    ligne=event.target.parentElement.parentElement
+    id=ligne.children[0].innerHTML
+    nom=ligne.children[1].innerHTML
+    age=ligne.children[2].innerHTML
+    document.getElementById('id').value=id
+    document.getElementById('nom').value=nom
+    document.getElementById('age').value=age
+    document.getElementById('actionBTN').innerHTML="Modifier"
+    document.getElementById('actionTitle').innerHTML="Modifier"
+}
+
+function modifierEtudiant(){
+    ligne.children[0].innerHTML=document.getElementById('id').value
+    ligne.children[1].innerHTML=document.getElementById('nom').value
+    ligne.children[2].innerHTML=document.getElementById('age').value
+}
+
+function actionEtudiant(){
+    if (document.getElementById('actionBTN').innerHTML=="Modifier"){
+        modifierEtudiant()
+    }
+    else{
+        ajouterEtudiant
+    }
     document.getElementById('modal').close()
 }
